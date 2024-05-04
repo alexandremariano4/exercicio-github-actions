@@ -25,7 +25,7 @@ jobs:
 
     - name: Iniciar aplicação Flask
       run: |
-        flask --app main run
+        python -m flask --app main run
 
     - name: Aguardar um tempo para a aplicação iniciar
       run: sleep 5
