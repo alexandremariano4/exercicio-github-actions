@@ -2,7 +2,7 @@
 name = "exercicio-github-actions"
 version = "1.0"
 description = "exercicio - cultura e pratica devops"
-authors = ["Alexandre Mariano>"]
+authors = ["Alexandre Mariano <1546125@sga.pucminas.br>"]
 license = "MIT License"
 readme = "README.md"
 
