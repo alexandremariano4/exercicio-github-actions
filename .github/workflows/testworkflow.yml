@@ -20,8 +20,6 @@ jobs:
 
     - name: Instalar dependências
       run: |
-        python -m venv .venv
-        source .\.venv\Scripts\activate
         pip install poetry
         poetry install --only main
 
