@@ -18,13 +18,15 @@ jobs:
       with:
         python-version: '3.12.3'
 
-    - name: Instalar dependências
+    - name: Criar ambiente virtual
       run: |
         python3 -m venv .venv
+    - name: Instalar dependências
+    
+      run: /
         source ./.venv/bin/activate
         pip install poetry
         poetry install --only main
-
     - name: Iniciar aplicação Flask
       run: |
         python3 -m flask --app main run
