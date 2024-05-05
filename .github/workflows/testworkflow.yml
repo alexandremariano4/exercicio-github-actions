@@ -1,4 +1,4 @@
-name: Teste Flask com GitHub Actions
+name: Teste Flask e CI/CD
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código-fonte
+    - name: Checkout do código
       uses: actions/checkout@v2
 
     - name: Configurar ambiente Python
@@ -18,24 +18,22 @@ jobs:
       with:
         python-version: '3.12.3'
 
-    - name: Criar ambiente virtual
+    - name: Instalar dependências
       run: |
         python3 -m venv .venv
-    - name: Instalar dependências
-
-      run: |
         source ./.venv/bin/activate
         pip install poetry
         poetry install --only main
 
-    - name: Iniciar aplicação Flask
+    - name: Iniciar servidor Gunicorn para Flask
       run: |
         source ./.venv/bin/activate
-        python .venv/bin/flask --app main run
+        gunicorn -b 127.0.0.1:5000 main:app &  # Inicia o servidor Gunicorn para o Flask
 
     - name: Aguardar um tempo para a aplicação iniciar
-      run: sleep 5
+      run: sleep 5  # Aguarda alguns segundos para o Flask iniciar
 
     - name: Executar testes com pytest
       run: |
+        source ./.venv/bin/activate
         pytest
